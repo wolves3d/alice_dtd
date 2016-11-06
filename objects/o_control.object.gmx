@@ -172,7 +172,12 @@ c.name = 'Custom' + '#(Sent: '+string(custom_count)+')';
 
 // Put here a function!
 
-
+DevToDev_inAppPurchase(
+    "TEST_PURCHASE_ID",
+    "TEST_PURCHASE_TYPE",
+    100,
+    2,
+    "RUR");
 //
 
 purchase_count += 1;
