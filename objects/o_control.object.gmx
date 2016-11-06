@@ -29,11 +29,6 @@
 
 // num = 0;
 
-//DevToDev_init("1a19fc77-77b9-0e93-b999-42aab62398bf", "r9ZHw8tPv7mWIsA6fGDOcCS4khxd5QoY");
-//DevToDev_startSession();
-
-//num = DevToDev_numTest();
-
 globalvar g_mother;
 g_mother = id;
 
@@ -83,7 +78,7 @@ d.event = ev_user3;
             <string>/// Code here!      
 
 num ++;
-num = DevToDev_customEvent("HelloWorld");
+
 </string>
           </argument>
         </arguments>
@@ -110,7 +105,17 @@ num = DevToDev_customEvent("HelloWorld");
 
 // Put here a function!
 
-
+DevToDev_progressionEvent(
+    "testLocation",
+    12,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    3);
 //
 
 progress_count += 1;
@@ -141,6 +146,7 @@ d.name = 'Progress' + '#(Sent: '+string(progress_count)+')';
 
 // Put here a function!
 
+DevToDev_customEvent("HelloWorld");
 
 //
 
@@ -175,8 +181,8 @@ c.name = 'Custom' + '#(Sent: '+string(custom_count)+')';
 DevToDev_inAppPurchase(
     "TEST_PURCHASE_ID",
     "TEST_PURCHASE_TYPE",
-    100,
     2,
+    100,
     "RUR");
 //
 
@@ -208,7 +214,7 @@ b.name = 'Purchase'+ '#(Sent: '+string(purchase_count)+')';
 
 // Put here a function!
 
-num = DevToDev_levelUp(level_count);
+num = DevToDev_levelUp(40 + level_count);
 //
 
 level_count += 1;

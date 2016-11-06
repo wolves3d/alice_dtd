@@ -41,7 +41,7 @@ android:enabled="true" android:exported="true"&gt;
       <filename>DevToDevExt.ext</filename>
       <origname>extensions\DevToDevExt.ext</origname>
       <init>DevToDev_staticInit</init>
-      <final>DevToDev_staticFinal</final>
+      <final></final>
       <kind>4</kind>
       <uncompress>0</uncompress>
       <ConfigOptions>
@@ -105,6 +105,26 @@ android:enabled="true" android:exported="true"&gt;
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
+        </function>
+        <function>
+          <name>DevToDev_progressionEvent</name>
+          <externalName>progressionEvent</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>10</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
         </function>
       </functions>
       <constants/>
