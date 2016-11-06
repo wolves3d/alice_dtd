@@ -106,16 +106,16 @@ num ++;
 // Put here a function!
 
 DevToDev_progressionEvent(
-    "testLocation",
-    12,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    3);
+    "testLocation", // locationName
+    12,             // spentTime (seconds, integer)
+    1,              // spentDot
+    2,              // spentBomb
+    3,              // spentPaint
+    4,              // spentTurns
+    5,              // spentMoreTurns
+    6,              // spentOpenBoxes
+    7,              // spentEP
+    3);             // earnedCoins
 //
 
 progress_count += 1;
