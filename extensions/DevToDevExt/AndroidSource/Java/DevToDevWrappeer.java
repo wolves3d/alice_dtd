@@ -28,6 +28,7 @@ public class DevToDevWrappeer
 	
 	public double staticInit()
 	{
+		// GameMaker wrong thread workadround
 		Looper.prepare();
 		
 		// debug
