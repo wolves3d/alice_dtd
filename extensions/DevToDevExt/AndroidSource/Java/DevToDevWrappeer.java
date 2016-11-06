@@ -38,7 +38,7 @@ public class DevToDevWrappeer
 	public double staticFinal()
 	{
 		Log.i("yoyo", "DevToDev_staticFinal");
-		endSession();
+		DevToDev.endSession();
 		return 0.0;
 	}
 
@@ -55,11 +55,23 @@ public class DevToDevWrappeer
 		return 0.0;
 	}
 
-	
 
 	public double levelUp(double level)
 	{
-		DevToDev.levelUp(level);
+		DevToDev.levelUp((int)level);
+		return 0.0;
+	}
+	
+	
+	public double inAppPurchase(
+		String purchaseId,
+		String purchaseType,
+		double purchaseAmount,
+		double purchasePrice,
+		String purchaseCurrency)
+	{
+		DevToDev.inAppPurchase(purchaseId, purchaseType, (int)purchaseAmount, (int)purchasePrice, purchaseCurrency);
+		return 0.0;
 	}
 	
 	// ----------------------------------------------------------------------------
