@@ -9,7 +9,7 @@
   <description></description>
   <helpfile></helpfile>
   <androidProps>-1</androidProps>
-  <iosProps>0</iosProps>
+  <iosProps>-1</iosProps>
   <installdir></installdir>
   <classname></classname>
   <androidclassname>DevToDevWrappeer</androidclassname>
@@ -28,7 +28,14 @@ android:enabled="true" android:exported="true"&gt;
   <iosplistinject></iosplistinject>
   <androidactivityinject></androidactivityinject>
   <gradleinject></gradleinject>
-  <iosSystemFrameworks/>
+  <iosSystemFrameworks>
+    <Framework weak="-1">libz.dylib</Framework>
+    <Framework weak="0">Security.framework</Framework>
+    <Framework weak="0">UIKit.framework</Framework>
+    <Framework weak="0">CoreGraphics.framework</Framework>
+    <Framework weak="0">AdSupport.framework</Framework>
+    <Framework weak="0">StoreKit.framework</Framework>
+  </iosSystemFrameworks>
   <iosThirdPartyFrameworks/>
   <androidPermissions>
     <Permission>android.permission.INTERNET</Permission>
