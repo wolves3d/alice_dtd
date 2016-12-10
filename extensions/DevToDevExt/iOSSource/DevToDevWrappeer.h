@@ -7,7 +7,7 @@
 - (NSString *) HowManyObjects:(double)arg0 Arg2:(double)arg1 Arg3:(char *)arg2;
 - (void)ReturnAsync:(double)arg0 Arg2:(double)arg1;
 
-- (double) staticInit:();
+- (double) staticInit;
 - (double) customEvent:(char *)arg0;
 
 @end
