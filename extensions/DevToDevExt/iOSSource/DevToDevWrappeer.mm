@@ -32,7 +32,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 - (double) staticInit:(char *)arg0 Arg2:(char *)arg1
 {
 	NSLog(@"INIT DevToDev");
-	[DevToDev initWithKey:@"applicationId" andSecretKey:@"secretKey"];
+	[DevToDev initWithKey:@"0b4ad729-d866-027f-b23b-979de79a3ee0" andSecretKey:@"zImFWpk8fBQ70wq3UrgtuM6oJ1vDhOLY"];
 	
 	return 1.0;
 }
