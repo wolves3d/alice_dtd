@@ -11,7 +11,7 @@
   <androidProps>-1</androidProps>
   <iosProps>-1</iosProps>
   <installdir></installdir>
-  <classname></classname>
+  <classname>DevToDevWrappeer</classname>
   <androidclassname>DevToDevWrappeer</androidclassname>
   <sourcedir></sourcedir>
   <androidsourcedir></androidsourcedir>
@@ -29,7 +29,7 @@ android:enabled="true" android:exported="true"&gt;
   <androidactivityinject></androidactivityinject>
   <gradleinject></gradleinject>
   <iosSystemFrameworks>
-    <Framework weak="-1">libz.dylib</Framework>
+    <Framework weak="0">libz.dylib</Framework>
     <Framework weak="0">Security.framework</Framework>
     <Framework weak="0">UIKit.framework</Framework>
     <Framework weak="0">CoreGraphics.framework</Framework>
