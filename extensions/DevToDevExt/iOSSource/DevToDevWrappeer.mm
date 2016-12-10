@@ -29,14 +29,21 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
     return value;
 }
 
-- (double) customEvent:(char *)arg0
+- (double) staticInit:(char *)arg0 Arg2:(char *)arg1
 {
 	NSLog(@"INIT DevToDev");
 	[DevToDev initWithKey:@"applicationId" andSecretKey:@"secretKey"];
 	
+	return 1.0;
+}
+
+- (double) customEvent:(char *)arg0
+{
 	NSLog(@"CUSTOM EVENT: %s", arg0);
 	NSString *eventName = [NSString stringWithFormat:@"%s",arg0];
 	[DevToDev customEvent:eventName];
+	
+	return 1.0;
 }
 
 - (NSString *) BuildAString:(char *)arg0 Arg2:(char *)arg1
