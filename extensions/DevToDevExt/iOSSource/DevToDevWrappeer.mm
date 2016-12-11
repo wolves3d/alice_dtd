@@ -37,6 +37,14 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	return 1.0;
 }
 
+
+- (double) staticFinal
+{
+	// EMPTY
+	return 1.0;
+}
+
+
 - (double) customEvent:(char *)arg0
 {
 	NSLog(@"CUSTOM EVENT: %s", arg0);
@@ -45,6 +53,92 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	
 	return 1.0;
 }
+
+
+- (double) levelUp:(double)arg0
+{
+	NSUInteger level = arg0;
+	[DevToDev levelUp:level];
+
+	return 1.0;
+}
+
+
+- (double) progressionEvent:(char *)locationName
+	Arg2:(double) spentTime
+	Arg3:(double) spentDot
+	Arg4:(double) spentBomb
+	Arg5:(double) spentPaint
+	Arg6:(double) spentTurns
+	Arg7:(double) spentMoreTurns
+	Arg8:(double) spentOpenBoxes
+	Arg9:(double) spentEP
+	Arg10:(double) earnedCoins
+{
+	LocationEventParams* params = [[LocationEventParams alloc] init];
+	[params setDifficulty:1];
+	//[params setSource: @"Vilage step 02"];
+	
+	NSString *eventId = [NSString stringWithFormat:@"%s", locationName];
+	NSNumber *duration = [NSNumber numberWithInt:(int)spentTime];
+	[DevToDev startProgressionEvent:eventId withParameters:params];
+
+	[params setIsSuccess: YES];
+	[params setDuration: duration];
+	
+	NSNumber *nsSpentDot = [NSNumber numberWithInt:(int)spentDot];
+	NSNumber *nsSpentBomb = [NSNumber numberWithInt:(int)spentBomb];
+	NSNumber *nsSpentPaint = [NSNumber numberWithInt:(int)spentPaint];
+	NSNumber *nsSpentTurns = [NSNumber numberWithInt:(int)spentTurns];
+	NSNumber *nsSpentMoreTurns = [NSNumber numberWithInt:(int)spentMoreTurns];
+	NSNumber *nsSpentOpenBoxes = [NSNumber numberWithInt:(int)spentOpenBoxes];
+	NSNumber *nsSpentEP = [NSNumber numberWithInt:(int)spentEP];
+	
+	NSDictionary* spent = @{
+		@"Dot" : nsSpentDot,
+		@"Bomb" : nsSpentBomb,
+		@"Paint" : nsSpentPaint,
+		@"Turns" : nsSpentTurns,
+		@"MoreTurns" : nsSpentMoreTurns,
+		@"OpenBoxes" : nsSpentOpenBoxes,
+		@"EP" : nsSpentEP
+	};
+	[params setSpent: spent];
+	
+	NSNumber *nsEarnedCoins = [NSNumber numberWithInt:(int)earnedCoins];
+	
+	NSDictionary* earned = @{
+		@"Coins" : nsEarnedCoins
+	};
+	[params setEarned: earned];
+
+	[DevToDev endProgressionEvent:eventId withParameters:params];
+		
+	return 1.0;
+}
+
+
+- (double) inAppPurchase:(char*)purchaseId
+		Arg2:(char*) purchaseType
+		Arg3:(double) purchaseAmount
+		Arg4:(double) purchasePrice
+		Arg5:(char*) purchaseCurrency
+{
+	NSString *nsPurchaseId = [NSString stringWithFormat:@"%s",purchaseId];
+	NSString *nsPurchaseType = [NSString stringWithFormat:@"%s",purchaseType];
+	NSInteger nsPurchaseAmount = purchaseAmount;
+	NSInteger nsPurchasePrice = purchasePrice;
+	NSString *nsPurchaseCurrency = [NSString stringWithFormat:@"%s",purchaseCurrency];
+	
+	[DevToDev inAppPurchase:nsPurchaseId
+		withPurchaseType:nsPurchaseType
+		andPurchaseAmount:nsPurchaseAmount
+		andPurchasePrice:nsPurchasePrice
+		andPurchaseCurrency:nsPurchaseCurrency];
+	
+	return 1.0;
+}
+
 
 - (NSString *) BuildAString:(char *)arg0 Arg2:(char *)arg1
 {
