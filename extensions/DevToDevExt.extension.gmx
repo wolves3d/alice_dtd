@@ -133,6 +133,20 @@ android:enabled="true" android:exported="true"&gt;
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>DevToDev_realPayment</name>
+          <externalName>realPayment</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>4</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>2</arg>
+            <arg>1</arg>
+            <arg>1</arg>
+          </args>
+        </function>
       </functions>
       <constants/>
     </file>

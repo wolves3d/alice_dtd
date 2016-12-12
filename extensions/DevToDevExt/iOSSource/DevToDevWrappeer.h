@@ -29,4 +29,9 @@
 		Arg4:(double) purchasePrice
 		Arg5:(char*) purchaseCurrency;
 
+- (double) realPayment:(char*)paymentId
+		Arg2:(double) inAppPrice
+		Arg3:(char*) inAppName
+		Arg4:(char*) inAppCurrencyISOCode;
+		
 @end

@@ -140,6 +140,24 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 }
 
 
+- (double) realPayment:(char*)paymentId
+		Arg2:(double) inAppPrice
+		Arg3:(char*) inAppName
+		Arg4:(char*) inAppCurrencyISOCode
+{
+	NSString *nsPaymentId = [NSString stringWithFormat:@"%s",paymentId];
+	NSString *nsInAppName = [NSString stringWithFormat:@"%s",inAppName];
+	NSString *nsInAppCurrencyISOCode = [NSString stringWithFormat:@"%s",inAppCurrencyISOCode];
+	
+	[DevToDev realPayment:nsPaymentId
+		withInAppPrice:inAppPrice
+		andInAppName:nsInAppName
+		andInAppCurrencyISOCode:nsInAppCurrencyISOCode];
+	
+	return 1.0;
+}
+
+
 - (NSString *) BuildAString:(char *)arg0 Arg2:(char *)arg1
 {
     NSString *value = [NSString stringWithFormat:@"%s%s",arg0,arg1];//[arg0 stringByAppendingString:arg1];

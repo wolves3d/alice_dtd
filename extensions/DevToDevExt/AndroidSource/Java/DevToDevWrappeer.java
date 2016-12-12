@@ -122,6 +122,17 @@ public class DevToDevWrappeer
 		return 0.0;
 	}
 	
+	public double realPayment(
+		String paymentId,
+		double inAppPrice,
+		String inAppName,
+		String inAppCurrencyISOCode)
+	{
+		DevToDev.realPayment(paymentId, inAppPrice, inAppName, inAppCurrencyISOCode);	
+		return 0.0;
+	}
+
+	
 	// ----------------------------------------------------------------------------
 	
 	
