@@ -128,7 +128,7 @@ public class DevToDevWrappeer
 		String inAppName,
 		String inAppCurrencyISOCode)
 	{
-		DevToDev.realPayment(paymentId, inAppPrice, inAppName, inAppCurrencyISOCode);	
+		DevToDev.realPayment(paymentId, (float)inAppPrice, inAppName, inAppCurrencyISOCode);	
 		return 0.0;
 	}
 
