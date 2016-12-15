@@ -63,6 +63,14 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	return 1.0;
 }
 
+- (double) tutorialCompleted:(double)arg0
+{
+	NSUInteger step = arg0;
+	[DevToDev tutorialCompleted: step];
+
+	return 1.0;
+}
+
 
 - (double) progressionEvent:(char *)locationName
 	Arg2:(double) spentTime

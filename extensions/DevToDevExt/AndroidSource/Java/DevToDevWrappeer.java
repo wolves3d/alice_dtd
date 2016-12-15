@@ -70,6 +70,13 @@ public class DevToDevWrappeer
 		return 0.0;
 	}
 	
+	public double tutorialCompleted(double tutorialStep)
+	{
+		DevToDev.tutorialCompleted((int)tutorialStep);
+
+		return 0.0;
+	}
+	
 	
 	public double progressionEvent(
 		String locationName,

@@ -11,6 +11,7 @@
 - (double) staticFinal;
 - (double) customEvent:(char *)arg0;
 - (double) levelUp:(double)arg0;
+- (double) tutorialCompleted:(double)arg0;
 
 - (double) progressionEvent:(char *)locationName
 	Arg2:(double) spentTime

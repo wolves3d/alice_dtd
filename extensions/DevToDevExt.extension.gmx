@@ -147,6 +147,17 @@ android:enabled="true" android:exported="true"&gt;
             <arg>1</arg>
           </args>
         </function>
+        <function>
+          <name>DevToDev_tutorialCompleted</name>
+          <externalName>tutorialCompleted</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
       </functions>
       <constants/>
     </file>
