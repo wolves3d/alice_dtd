@@ -82,16 +82,19 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	Arg8:(double) spentOpenBoxes
 	Arg9:(double) spentEP
 	Arg10:(double) earnedCoins
+	Arg11:(double) spentCoins
+	Arg12:(double) success
+	Arg13:(double) difficulty
 {
 	LocationEventParams* params = [[LocationEventParams alloc] init];
-	[params setDifficulty:1];
+	[params setDifficulty:(int)difficulty];
 	//[params setSource: @"Vilage step 02"];
 	
 	NSString *eventId = [NSString stringWithFormat:@"%s", locationName];
 	NSNumber *duration = [NSNumber numberWithInt:(int)spentTime];
 	[DevToDev startProgressionEvent:eventId withParameters:params];
 
-	[params setIsSuccess: YES];
+	[params setIsSuccess: (success > 0.5)];
 	[params setDuration: duration];
 	
 	NSNumber *nsSpentDot = [NSNumber numberWithInt:(int)spentDot];
@@ -101,6 +104,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	NSNumber *nsSpentMoreTurns = [NSNumber numberWithInt:(int)spentMoreTurns];
 	NSNumber *nsSpentOpenBoxes = [NSNumber numberWithInt:(int)spentOpenBoxes];
 	NSNumber *nsSpentEP = [NSNumber numberWithInt:(int)spentEP];
+	NSNumber *nsSpentCoins = [NSNumber numberWithInt:(int)spentCoins];
 	
 	NSDictionary* spent = @{
 		@"Dot" : nsSpentDot,
@@ -109,7 +113,8 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		@"Turns" : nsSpentTurns,
 		@"MoreTurns" : nsSpentMoreTurns,
 		@"OpenBoxes" : nsSpentOpenBoxes,
-		@"EP" : nsSpentEP
+		@"EP" : nsSpentEP,
+		@"Coins" : nsSpentCoins
 	};
 	[params setSpent: spent];
 	

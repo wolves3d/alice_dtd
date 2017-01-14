@@ -119,9 +119,12 @@ android:enabled="true" android:exported="true"&gt;
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>10</argCount>
+          <argCount>13</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
             <arg>2</arg>
             <arg>2</arg>
             <arg>2</arg>

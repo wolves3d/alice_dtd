@@ -22,7 +22,10 @@
 	Arg7:(double) spentMoreTurns
 	Arg8:(double) spentOpenBoxes
 	Arg9:(double) spentEP
-	Arg10:(double) earnedCoins;
+	Arg10:(double) earnedCoins
+	Arg11:(double) spentCoins
+	Arg12:(double) success
+	Arg13:(double) difficulty;
 
 - (double) inAppPurchase:(char*)purchaseId
 		Arg2:(char*)purchaseType

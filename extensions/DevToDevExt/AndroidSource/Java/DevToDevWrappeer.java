@@ -88,15 +88,18 @@ public class DevToDevWrappeer
 		double spentMoreTurns,
 		double spentOpenBoxes,
 		double spentEP,
-		double earnedCoins)
+		double earnedCoins,
+		double spentCoins,
+		double success,
+		double difficulty)
 	{
 		LocationEventParams params = new LocationEventParams();
 		
-		params.setDifficulty(1);
+		params.setDifficulty((int)difficulty);
 		//params.setSource("Vilage step 02");
 		DevToDev.startProgressionEvent(locationName, params);
 		
-		params.setSuccess(true);
+		params.setSuccess(success > 0.5);
 		params.setDuration((int)spentTime);
 		
 		HashMap<String, Number> spent = new HashMap<String, Number>();
@@ -107,6 +110,7 @@ public class DevToDevWrappeer
 		spent.put("MoreTurns", (int)spentMoreTurns);
 		spent.put("OpenBoxes", (int)spentOpenBoxes);
 		spent.put("EP", (int)spentEP);
+		spent.put("Coins", (int)spentCoins);
 		params.setSpent(spent);
 		
 		HashMap<String, Number> earned = new HashMap<String, Number>();
