@@ -1,5 +1,5 @@
 #import "DevToDevWrappeer.h"
-#import "include/core/DevToDev.h"
+#import "devtodev.h"
 #include <asl.h>
 #include <stdio.h>
 

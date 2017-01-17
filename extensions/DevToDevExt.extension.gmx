@@ -36,7 +36,10 @@ android:enabled="true" android:exported="true"&gt;
     <Framework weak="0">AdSupport.framework</Framework>
     <Framework weak="0">StoreKit.framework</Framework>
   </iosSystemFrameworks>
-  <iosThirdPartyFrameworks/>
+  <iosThirdPartyFrameworks>
+    <Framework weak="0">devtodev.framework</Framework>
+    <Framework weak="0">devtodevAppExtensions.framework</Framework>
+  </iosThirdPartyFrameworks>
   <androidPermissions>
     <Permission>android.permission.INTERNET</Permission>
     <Permission>android.permission.ACCESS_WIFI_STATE</Permission>

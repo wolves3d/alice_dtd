@@ -115,7 +115,10 @@ DevToDev_progressionEvent(
     5,              // spentMoreTurns
     6,              // spentOpenBoxes
     7,              // spentEP
-    3);             // earnedCoins
+    3,
+    1,
+    1,
+    1);             // earnedCoins
 //
 
 progress_count += 1;
