@@ -39,6 +39,7 @@ android:enabled="true" android:exported="true"&gt;
   <iosThirdPartyFrameworks>
     <Framework weak="0">devtodev.framework</Framework>
     <Framework weak="0">devtodevAppExtensions.framework</Framework>
+    <Framework weak="-1">UserNotifications.framework</Framework>
   </iosThirdPartyFrameworks>
   <androidPermissions>
     <Permission>android.permission.INTERNET</Permission>
