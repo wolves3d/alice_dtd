@@ -85,6 +85,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	Arg11:(double) spentCoins
 	Arg12:(double) success
 	Arg13:(double) difficulty
+	Arg14:(double) playHour
 {
 	LocationEventParams* params = [[LocationEventParams alloc] init];
 	[params setDifficulty:(int)difficulty];
@@ -105,6 +106,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	NSNumber *nsSpentOpenBoxes = [NSNumber numberWithInt:(int)spentOpenBoxes];
 	NSNumber *nsSpentEP = [NSNumber numberWithInt:(int)spentEP];
 	NSNumber *nsSpentCoins = [NSNumber numberWithInt:(int)spentCoins];
+	NSNumber *nsPlayHour = [NSNumber numberWithInt:(int)playHour];
 	
 	NSDictionary* spent = @{
 		@"Dot" : nsSpentDot,
@@ -115,6 +117,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		@"OpenBoxes" : nsSpentOpenBoxes,
 		@"EP" : nsSpentEP,
 		@"Coins" : nsSpentCoins
+		@"playHour" : nsPlayHour
 	};
 	[params setSpent: spent];
 	

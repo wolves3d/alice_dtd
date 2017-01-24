@@ -25,7 +25,8 @@
 	Arg10:(double) earnedCoins
 	Arg11:(double) spentCoins
 	Arg12:(double) success
-	Arg13:(double) difficulty;
+	Arg13:(double) difficulty
+	Arg14:(double) playHour;
 
 - (double) inAppPurchase:(char*)purchaseId
 		Arg2:(char*)purchaseType

@@ -91,7 +91,8 @@ public class DevToDevWrappeer
 		double earnedCoins,
 		double spentCoins,
 		double success,
-		double difficulty)
+		double difficulty,
+		double playHour)
 	{
 		LocationEventParams params = new LocationEventParams();
 		
@@ -111,6 +112,7 @@ public class DevToDevWrappeer
 		spent.put("OpenBoxes", (int)spentOpenBoxes);
 		spent.put("EP", (int)spentEP);
 		spent.put("Coins", (int)spentCoins);
+		spent.put("playHour", (int)playHour);
 		params.setSpent(spent);
 		
 		HashMap<String, Number> earned = new HashMap<String, Number>();
