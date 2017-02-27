@@ -80,12 +80,12 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	Arg6:(double) spentTurns
 	Arg7:(double) spentMoreTurns
 	Arg8:(double) spentOpenBoxes
-	Arg9:(double) spentEP
-	Arg10:(double) earnedCoins
-	Arg11:(double) spentCoins
-	Arg12:(double) success
-	Arg13:(double) difficulty
-	Arg14:(double) playHour
+	Arg9:(double) success
+	Arg10:(double) difficulty
+	Arg11:(double) playHour
+	Arg12:(double) coinsSpentProgress
+	Arg13:(double) coinsSpentFinal
+	Arg14:(double) coinsBalance
 {
 	LocationEventParams* params = [[LocationEventParams alloc] init];
 	[params setDifficulty:(int)difficulty];
@@ -104,9 +104,10 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	NSNumber *nsSpentTurns = [NSNumber numberWithInt:(int)spentTurns];
 	NSNumber *nsSpentMoreTurns = [NSNumber numberWithInt:(int)spentMoreTurns];
 	NSNumber *nsSpentOpenBoxes = [NSNumber numberWithInt:(int)spentOpenBoxes];
-	NSNumber *nsSpentEP = [NSNumber numberWithInt:(int)spentEP];
-	NSNumber *nsSpentCoins = [NSNumber numberWithInt:(int)spentCoins];
 	NSNumber *nsPlayHour = [NSNumber numberWithInt:(int)playHour];
+	
+	NSNumber *nsCoinsSpentProgress = [NSNumber numberWithInt:(int)coinsSpentProgress];
+	NSNumber *nsCoinsBalance = [NSNumber numberWithInt:(int)coinsBalance];
 	
 	NSDictionary* spent = @{
 		@"Dot" : nsSpentDot,
@@ -115,18 +116,34 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		@"Turns" : nsSpentTurns,
 		@"MoreTurns" : nsSpentMoreTurns,
 		@"OpenBoxes" : nsSpentOpenBoxes,
-		@"EP" : nsSpentEP,
-		@"Coins" : nsSpentCoins,
 		@"playHour" : nsPlayHour,
+		@"Coins spent progress" : nsCoinsSpentProgress,
+		@"Coins balance" : nsCoinsBalance,
 	};
-	[params setSpent: spent];
 	
+	if (success > 0.5)
+	{
+		NSNumber *nsCoinsSpentFinal = [NSNumber numberWithInt:(int)coinsSpentFinal];
+		
+		NSMutableDictionary *mutableSpent = [dictionary mutableCopy];
+		mutableDictionary[@"Coins spent final"] = nsCoinsSpentFinal;
+		
+		[params setSpent: mutableSpent];
+	}
+	else
+	{
+		[params setSpent: spent];
+	}
+	
+	
+	/*
 	NSNumber *nsEarnedCoins = [NSNumber numberWithInt:(int)earnedCoins];
 	
 	NSDictionary* earned = @{
 		@"Coins" : nsEarnedCoins
 	};
 	[params setEarned: earned];
+	*/
 
 	[DevToDev endProgressionEvent:eventId withParameters:params];
 		

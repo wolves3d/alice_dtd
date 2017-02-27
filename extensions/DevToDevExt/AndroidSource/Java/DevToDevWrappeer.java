@@ -86,12 +86,12 @@ public class DevToDevWrappeer
 		double spentTurns,
 		double spentMoreTurns,
 		double spentOpenBoxes,
-		double spentEP,
-		double earnedCoins,
-		double spentCoins,
 		double success,
 		double difficulty,
-		double playHour)
+		double playHour,
+		double coinsSpentProgress,
+		double coinsSpentFinal,
+		double coinsBalance)
 	{
 		LocationEventParams params = new LocationEventParams();
 		
@@ -109,14 +109,24 @@ public class DevToDevWrappeer
 		spent.put("Turns", (int)spentTurns);
 		spent.put("MoreTurns", (int)spentMoreTurns);
 		spent.put("OpenBoxes", (int)spentOpenBoxes);
-		spent.put("EP", (int)spentEP);
-		spent.put("Coins", (int)spentCoins);
 		spent.put("playHour", (int)playHour);
+
+		spent.put("Coins spent progress", (int)coinsSpentProgress);
+		spent.put("Coins balance", (int)coinsBalance);
+		
+		if (success > 0.5)
+		{
+			spent.put("Coins spent final", (int)coinsSpentFinal);
+		}
+		
+		
 		params.setSpent(spent);
 		
+		/*
 		HashMap<String, Number> earned = new HashMap<String, Number>();
 		earned.put("Coins", (int)earnedCoins);
 		params.setEarned(earned);
+		*/
 
 		DevToDev.endProgressionEvent(locationName, params);
 		return 0.0;
