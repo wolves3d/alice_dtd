@@ -23,8 +23,8 @@ import com.devtodev.core.data.metrics.aggregated.progression.params.LocationEven
 
 public class DevToDevWrappeer
 {
-	public static final String APP_ID = "1a19fc77-77b9-0e93-b999-42aab62398bf";
-	public static final String SECRET_KEY = "r9ZHw8tPv7mWIsA6fGDOcCS4khxd5QoY";
+	public static final String APP_ID = "4026afff-7522-03d8-868c-f62c41723d46";
+	public static final String SECRET_KEY = "HP6cxMTsqXDoOJAQCSL38hmrbkwiFyNz";
 	
 	public double staticInit()
 	{
@@ -34,10 +34,9 @@ public class DevToDevWrappeer
 		// debug
 		Log.i("yoyo", "DevToDev_staticInit");
 		
-
+		DevToDev.setLogLevel(LogLevel.Assert);
 		DevToDev.init(RunnerJNILib.GetApplicationContext(), APP_ID, SECRET_KEY);		
-		DevToDev.setLogLevel(LogLevel.Verbose);
-		
+				
 		DevToDev.startSession();
 
 		return 0.0;

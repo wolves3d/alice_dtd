@@ -32,7 +32,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 - (double) staticInit
 {
 	NSLog(@"INIT DevToDev");
-	[DevToDev initWithKey:@"0b4ad729-d866-027f-b23b-979de79a3ee0" andSecretKey:@"zImFWpk8fBQ70wq3UrgtuM6oJ1vDhOLY"];
+	[DevToDev initWithKey:@"459e6b88-3155-01d8-941e-7001c50f3172" andSecretKey:@"NjH4byU02u6AgsvxCJfqIB3cLwVYtZeo"];
 	
 	return 1.0;
 }
@@ -116,8 +116,8 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		@"MoreTurns" : nsSpentMoreTurns,
 		@"OpenBoxes" : nsSpentOpenBoxes,
 		@"EP" : nsSpentEP,
-		@"Coins" : nsSpentCoins
-		@"playHour" : nsPlayHour
+		@"Coins" : nsSpentCoins,
+		@"playHour" : nsPlayHour,
 	};
 	[params setSpent: spent];
 	
