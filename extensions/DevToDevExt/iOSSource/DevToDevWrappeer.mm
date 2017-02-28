@@ -126,7 +126,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		NSNumber *nsCoinsSpentFinal = [NSNumber numberWithInt:(int)coinsSpentFinal];
 		
 		NSMutableDictionary *mutableSpent = [spent mutableCopy];
-		mutableDictionary[@"Coins spent final"] = nsCoinsSpentFinal;
+		mutableSpent[@"Coins spent final"] = nsCoinsSpentFinal;
 		
 		[params setSpent: mutableSpent];
 	}
