@@ -111,7 +111,7 @@ public class DevToDevWrappeer
 		spent.put("OpenBoxes", (int)spentOpenBoxes);
 		spent.put("playHour", (int)playHour);
 
-		spent.put("Coins spent progress", (int)coinsSpentProgress);
+		spent.put("Coins trial", (int)coinsSpentProgress);
 		spent.put("Coins balance", (int)coinsBalance);
 		
 		if (success > 0.5)

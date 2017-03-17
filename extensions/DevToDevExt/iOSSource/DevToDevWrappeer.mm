@@ -117,7 +117,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		@"MoreTurns" : nsSpentMoreTurns,
 		@"OpenBoxes" : nsSpentOpenBoxes,
 		@"playHour" : nsPlayHour,
-		@"Coins spent progress" : nsCoinsSpentProgress,
+		@"Coins trial" : nsCoinsSpentProgress,
 		@"Coins balance" : nsCoinsBalance,
 	};
 	
