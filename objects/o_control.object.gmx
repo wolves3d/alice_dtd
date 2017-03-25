@@ -114,11 +114,12 @@ DevToDev_progressionEvent(
     4,              // spentTurns
     5,              // spentMoreTurns
     6,              // spentOpenBoxes
-    7,              // spentEP
-    3,
-    1,
-    1,
-    1);             // earnedCoins
+    7,              // success
+    3,              // difficulty
+    1,              // playHour
+    1,              // coinsSpentProgress
+    1,              // coinsSpentFinal
+    2);             // coinsBalance
 //
 
 progress_count += 1;

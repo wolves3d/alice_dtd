@@ -18,6 +18,7 @@ import com.yoyogames.runner.RunnerJNILib;
 import com.devtodev.core.DevToDev;
 import com.devtodev.core.utils.log.LogLevel;
 import com.devtodev.core.data.metrics.aggregated.progression.params.LocationEventParams;
+import com.devtodev.core.data.consts.Gender;
 //import com.devtodev.core.*;
 
 
@@ -154,6 +155,35 @@ public class DevToDevWrappeer
 		return 0.0;
 	}
 
+	public double setUserInfo(
+		double gender,
+		String name,
+		double ageRange,
+		double id,
+		String locale,
+		String email,
+		double moneySpent)
+	{
+		if (gender > 0.5)
+		{
+			DevToDev.getActivePlayer().setGender(Gender.Male);	
+		}
+		else
+		{
+			DevToDev.getActivePlayer().setGender(Gender.Female);
+		}
+
+		DevToDev.getActivePlayer().setUserData("name", name);
+		DevToDev.getActivePlayer().setUserData("ageRange", (Number)ageRange);
+		DevToDev.getActivePlayer().setUserData("id", (Number)id);
+		DevToDev.getActivePlayer().setUserData("locale", locale);
+
+		DevToDev.getActivePlayer().setEmail(email);
+		
+		DevToDev.getActivePlayer().setUserData("moneySpent", (Number)moneySpent);
+
+		return 0.0;
+	}
 	
 	// ----------------------------------------------------------------------------
 	

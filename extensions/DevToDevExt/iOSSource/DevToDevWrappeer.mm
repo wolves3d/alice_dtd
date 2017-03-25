@@ -191,6 +191,45 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 }
 
 
+- (double) setUserInfo:(double)gender
+		Arg2:(char*) name
+		Arg3:(double) ageRange
+		Arg4:(double) userID
+		Arg5:(char*) locale
+		Arg6:(char*) email
+		Arg7:(double) moneySpent
+{
+	if (gender > 0.5)
+	{
+		DevToDev.activeUser.gender = Male;
+	}
+	else
+	{
+		DevToDev.activeUser.gender = Female;
+	}
+	
+	DevToDev.activeUser.email = [NSString stringWithFormat:@"%s",email];
+	
+	NSString *nsName = [NSString stringWithFormat:@"%s", name];
+	NSInteger nsAgeRange = ageRange;
+	NSInteger nsId = userID;
+	NSString *nsLocale = [NSString stringWithFormat:@"%s", locale];
+	NSInteger nsMoneySpent = moneySpent;
+	
+	NSDictionary* userData = @{
+		@"name" : nsName,
+		@"ageRange" : nsAgeRange,
+		@"id" : nsId,
+		@"locale" nsLocale,
+		@"moneySpent" : nsMoneySpent,
+	};
+
+	[DevToDev.activeUser setUserData: userData];
+
+	return 1.0;
+}
+
+
 - (NSString *) BuildAString:(char *)arg0 Arg2:(char *)arg1
 {
     NSString *value = [NSString stringWithFormat:@"%s%s",arg0,arg1];//[arg0 stringByAppendingString:arg1];
