@@ -2,6 +2,11 @@ package ${YYAndroidPackageName};
 
 import android.util.Log;
 import android.content.Context;
+import android.annotation.TargetApi;
+import android.app.Application;
+import android.app.Activity;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Looper;
 import java.io.File;
 import java.io.FileReader;
@@ -36,18 +41,53 @@ public class DevToDevWrappeer
 		Log.i("yoyo", "DevToDev_staticInit");
 		
 		DevToDev.setLogLevel(LogLevel.Assert);
-		DevToDev.init(RunnerJNILib.GetApplicationContext(), APP_ID, SECRET_KEY);		
+		Context appContext = RunnerJNILib.GetApplicationContext();
+		DevToDev.init(appContext, APP_ID, SECRET_KEY);		
 				
 		DevToDev.startSession();
 
-		return 0.0;
-	}
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+		{
+			((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
+		}
+		
+        return 0.0;
+    }
+	
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public class CustomLifecycleCallback implements Application.ActivityLifecycleCallbacks
+	{   
+		@Override	
+		public void onActivityCreated(Activity activity, Bundle savedInstanceState) {}
+		
+		@Override
+		public void onActivityDestroyed(Activity activity) {}
+		
+		@Override
+		public void onActivityPaused(Activity activity) {}
+		
+		@Override
+		public void onActivityResumed(Activity activity) {}
+		
+		@Override
+		public void onActivitySaveInstanceState(Activity activity, Bundle outState) {}
+		
+		@Override
+		public void onActivityStarted(Activity activity) {}
+
+        @Override
+        public void onActivityStopped(Activity activity)
+		{
+			Log.i("yoyo", "DevToDev.endSession");
+            DevToDev.endSession();
+        }
+    }
 	
 	
 	public double staticFinal()
 	{
 		Log.i("yoyo", "DevToDev_staticFinal");
-		DevToDev.endSession();
+		//DevToDev.endSession();
 		return 0.0;
 	}
 
