@@ -174,7 +174,7 @@ android:enabled="true" android:exported="true"&gt;
           <returnType>2</returnType>
           <argCount>7</argCount>
           <args>
-            <arg>2</arg>
+            <arg>1</arg>
             <arg>1</arg>
             <arg>2</arg>
             <arg>2</arg>

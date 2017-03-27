@@ -121,20 +121,15 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		@"Coins balance" : nsCoinsBalance,
 	};
 	
+	NSMutableDictionary *mutableSpent = [spent mutableCopy];
+	
 	if (success > 0.5)
 	{
 		NSNumber *nsCoinsSpentFinal = [NSNumber numberWithInt:(int)coinsSpentFinal];
-		
-		NSMutableDictionary *mutableSpent = [spent mutableCopy];
 		mutableSpent[@"Coins spent final"] = nsCoinsSpentFinal;
+	}
 		
-		[params setSpent: mutableSpent];
-	}
-	else
-	{
-		[params setSpent: spent];
-	}
-	
+	[params setSpent: mutableSpent];
 	
 	/*
 	NSNumber *nsEarnedCoins = [NSNumber numberWithInt:(int)earnedCoins];
@@ -191,7 +186,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 }
 
 
-- (double) setUserInfo:(double)gender
+- (double) setUserInfo:(char*)gender
 		Arg2:(char*) name
 		Arg3:(double) ageRange
 		Arg4:(double) userID
@@ -199,7 +194,8 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 		Arg6:(char*) email
 		Arg7:(double) moneySpent
 {
-	if (gender > 0.5)
+	NSString *nsGender = [NSString stringWithFormat:@"%s", name];
+	if ([nsGender isEqualToString:@"male"])
 	{
 		DevToDev.activeUser.gender = Male;
 	}
@@ -211,16 +207,16 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	DevToDev.activeUser.email = [NSString stringWithFormat:@"%s",email];
 	
 	NSString *nsName = [NSString stringWithFormat:@"%s", name];
-	NSInteger nsAgeRange = ageRange;
-	NSInteger nsId = userID;
+	NSNumber *nsAgeRange = [NSNumber numberWithInt:(int)ageRange];
+	NSNumber *nsId = [NSNumber numberWithInt:(int)userID];
 	NSString *nsLocale = [NSString stringWithFormat:@"%s", locale];
-	NSInteger nsMoneySpent = moneySpent;
+	NSNumber *nsMoneySpent = [NSNumber numberWithInt:(int)moneySpent];
 	
 	NSDictionary* userData = @{
 		@"name" : nsName,
 		@"ageRange" : nsAgeRange,
 		@"id" : nsId,
-		@"locale" nsLocale,
+		@"locale" : nsLocale,
 		@"moneySpent" : nsMoneySpent,
 	};
 

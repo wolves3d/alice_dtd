@@ -156,7 +156,7 @@ public class DevToDevWrappeer
 	}
 
 	public double setUserInfo(
-		double gender,
+		String gender,
 		String name,
 		double ageRange,
 		double id,
@@ -164,7 +164,7 @@ public class DevToDevWrappeer
 		String email,
 		double moneySpent)
 	{
-		if (gender > 0.5)
+		if (gender.equals("male"))
 		{
 			DevToDev.getActivePlayer().setGender(Gender.Male);	
 		}

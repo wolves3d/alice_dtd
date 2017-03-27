@@ -39,7 +39,7 @@
 		Arg3:(char*) inAppName
 		Arg4:(char*) inAppCurrencyISOCode;
 		
-- (double) setUserInfo:(double)gender
+- (double) setUserInfo:(char*)gender
 		Arg2:(char*) name
 		Arg3:(double) ageRange
 		Arg4:(double) userID
