@@ -142,15 +142,18 @@ android:enabled="true" android:exported="true"&gt;
           </args>
         </function>
         <function>
-          <name>DevToDev_realPayment</name>
-          <externalName>realPayment</externalName>
+          <name>DevToDev_verifyPayment</name>
+          <externalName>verifyPayment</externalName>
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>4</argCount>
+          <argCount>7</argCount>
           <args>
             <arg>1</arg>
             <arg>2</arg>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>1</arg>
             <arg>1</arg>
             <arg>1</arg>
           </args>

@@ -24,13 +24,21 @@ import com.devtodev.core.DevToDev;
 import com.devtodev.core.utils.log.LogLevel;
 import com.devtodev.core.data.metrics.aggregated.progression.params.LocationEventParams;
 import com.devtodev.core.data.consts.Gender;
+import com.devtodev.cheat.DevToDevCheat;
+import com.devtodev.cheat.listener.OnVerifyListener;
+import com.devtodev.cheat.consts.VerifyStatus;
 //import com.devtodev.core.*;
 
 
-public class DevToDevWrappeer
+public class DevToDevWrappeer implements OnVerifyListener
 {
 	public static final String APP_ID = "4026afff-7522-03d8-868c-f62c41723d46";
 	public static final String SECRET_KEY = "HP6cxMTsqXDoOJAQCSL38hmrbkwiFyNz";
+	
+	String _iap_paymentId;
+	double _iap_inAppPrice;
+	String _iap_inAppName;
+	String _iap_inAppCurrencyISOCode;
 	
 	public double staticInit()
 	{
@@ -193,6 +201,32 @@ public class DevToDevWrappeer
 	{
 		DevToDev.realPayment(paymentId, (float)inAppPrice, inAppName, inAppCurrencyISOCode);	
 		return 0.0;
+	}
+	
+	public double verifyPayment(
+		String paymentId,
+		double inAppPrice,
+		String inAppName,
+		String inAppCurrencyISOCode,
+		String receipt,
+		String signature,
+		String publicKey)
+	{
+		_iap_paymentId = paymentId;
+		_iap_inAppPrice = inAppPrice;
+		_iap_inAppName = inAppName;
+		_iap_inAppCurrencyISOCode = inAppCurrencyISOCode;
+	
+		DevToDevCheat.verifyPayment(receipt, signature, publicKey, this);
+		return 0.0;
+	}
+	
+	public void onVerify(VerifyStatus status)
+	{
+		if (status == VerifyStatus.Valid)
+		{
+			realPayment(_iap_paymentId, _iap_inAppPrice, _iap_inAppName, _iap_inAppCurrencyISOCode);
+		}
 	}
 
 	public double setUserInfo(
