@@ -16,9 +16,20 @@ import java.io.IOException;
 import java.lang.String;
 import java.lang.Number;
 import java.util.HashMap;
+import java.util.Map;
 
 import ${YYAndroidPackageName}.R;
 import com.yoyogames.runner.RunnerJNILib;
+
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.app.Dialog;
+import android.view.MotionEvent;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 import com.devtodev.core.DevToDev;
 import com.devtodev.core.utils.log.LogLevel;
@@ -30,7 +41,7 @@ import com.devtodev.cheat.consts.VerifyStatus;
 //import com.devtodev.core.*;
 
 
-public class DevToDevWrappeer implements OnVerifyListener
+public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 {
 	public static final String APP_ID = "4026afff-7522-03d8-868c-f62c41723d46";
 	public static final String SECRET_KEY = "HP6cxMTsqXDoOJAQCSL38hmrbkwiFyNz";
@@ -39,6 +50,8 @@ public class DevToDevWrappeer implements OnVerifyListener
 	double _iap_inAppPrice;
 	String _iap_inAppName;
 	String _iap_inAppCurrencyISOCode;
+	
+	Map<String, String> _tokenMap;
 	
 	public double staticInit()
 	{
@@ -58,6 +71,8 @@ public class DevToDevWrappeer implements OnVerifyListener
 		{
 			((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
 		}
+	
+		_tokenMap = new HashMap<String, String>();
 		
         return 0.0;
     }
@@ -204,7 +219,7 @@ public class DevToDevWrappeer implements OnVerifyListener
 	}
 	
 	public double verifyPayment(
-		String paymentId,
+		String token,
 		double inAppPrice,
 		String inAppName,
 		String inAppCurrencyISOCode,
@@ -212,12 +227,13 @@ public class DevToDevWrappeer implements OnVerifyListener
 		String signature,
 		String publicKey)
 	{
-		_iap_paymentId = paymentId;
+		_iap_paymentId = token;
 		_iap_inAppPrice = inAppPrice;
 		_iap_inAppName = inAppName;
 		_iap_inAppCurrencyISOCode = inAppCurrencyISOCode;
 	
-		DevToDevCheat.verifyPayment(receipt, signature, publicKey, this);
+		String wwSign = getSignatureWithToken(token);
+		DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
 		return 0.0;
 	}
 	
@@ -297,4 +313,94 @@ public class DevToDevWrappeer implements OnVerifyListener
 		RunnerJNILib.DsMapAddDouble( dsMapIndex, "argument1", arg1);
 		RunnerJNILib.CreateAsynEventWithDSMap(dsMapIndex, EVENT_OTHER_SOCIAL);
 	}
+	
+	public String getSignatureWithToken(String arg0)
+	{
+		if (_tokenMap.containsKey(arg0))
+		{
+			return _tokenMap.get(arg0);
+		}
+		
+		return new String("empty");
+	}
+	
+	// implements IExtensionBase -----------------------------------------------
+
+	public void onStart(){};
+	public void onRestart(){};
+	public void onStop(){};
+	public void onDestroy(){};
+	public void onPause(){};
+	public void onResume(){};
+	public void onConfigurationChanged(Configuration newConfig){};
+	
+	public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {};
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (requestCode == 1001)
+		{
+			int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
+			String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+			String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");//this is the signature which you want
+
+			if (resultCode == Activity.RESULT_OK)
+			{
+				try
+				{
+					JSONObject jo = new JSONObject(purchaseData);
+					String sku = jo.getString("productId");
+					// alert("You have bought the " + sku + ". Excellent choice, adventurer!");
+					
+					String token = jo.getString("purchaseToken");
+					_tokenMap.put(token, dataSignature);
+					
+					// DEBUG
+					//alert("INAPP_DATA_SIGNATURE = [" + dataSignature + "]");
+				}
+				catch (JSONException e)
+				{
+					//alert("Failed to parse purchase data.");
+					e.printStackTrace();
+				}
+			}
+		}
+	};
+	
+	public boolean onKeyLongPress(int keyCode, KeyEvent event)
+	{
+		return false;
+	}
+	public void onWindowFocusChanged(boolean hasFocus)
+	{
+	}
+	
+	public boolean onCreateOptionsMenu( Menu menu )
+	{
+		return false;
+	}
+	public boolean onOptionsItemSelected( MenuItem item )
+	{
+		return false;
+	}
+	
+	public boolean onKeyDown( int keyCode, KeyEvent event )
+	{
+		return false;
+	}
+	public boolean onKeyUp( int keyCode, KeyEvent event )
+	{
+		return false;
+	}
+	
+	public Dialog onCreateDialog(int id)
+	{
+		return null;
+	}
+	
+	public boolean onTouchEvent(final MotionEvent event)	{ return false;};
+	public boolean onGenericMotionEvent(MotionEvent event)	{ return false;};
+	
+	public boolean dispatchGenericMotionEvent(MotionEvent event)	{ return false;};
+	public boolean dispatchKeyEvent(KeyEvent event)				{ return false;};
 }
