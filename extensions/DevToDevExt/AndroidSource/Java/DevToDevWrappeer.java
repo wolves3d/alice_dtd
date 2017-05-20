@@ -343,28 +343,47 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
+		Log.i("yoyo_ww", "Got activity request code: " + requestCode);
+		Log.i("yoyo_ww", "Got activity result: " + resultCode);
+		
 		if (requestCode == 1001)
 		{
+			Log.i("yoyo_ww", "Getting extras");
+			
 			int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
+			Log.i("yoyo_ww", "Got responseCode: " + responseCode);
+			
 			String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+			Log.i("yoyo_ww", "Got purchaseData: " + purchaseData);
+			
 			String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");//this is the signature which you want
+			Log.i("yoyo_ww", "Got dataSignature: " + dataSignature);
 
 			if (resultCode == Activity.RESULT_OK)
 			{
 				try
 				{
+					Log.i("yoyo_ww", "Getting JSON");
+					
 					JSONObject jo = new JSONObject(purchaseData);
 					String sku = jo.getString("productId");
 					// alert("You have bought the " + sku + ". Excellent choice, adventurer!");
+					Log.i("yoyo_ww", "Got productId: " + sku);
 					
 					String token = jo.getString("purchaseToken");
+					Log.i("yoyo_ww", "Got token: " + token);
+					
+					Log.i("yoyo_ww", "Puttin data to hashMap");
 					_tokenMap.put(token, dataSignature);
+					Log.i("yoyo_ww", "SUCCESS");
 					
 					// DEBUG
 					//alert("INAPP_DATA_SIGNATURE = [" + dataSignature + "]");
 				}
 				catch (JSONException e)
 				{
+					Log.i("yoyo_ww", "Getting JSON EXCEPTION");
+					
 					//alert("Failed to parse purchase data.");
 					e.printStackTrace();
 				}
