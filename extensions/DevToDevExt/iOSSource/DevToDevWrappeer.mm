@@ -246,4 +246,11 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 
 }
 
+// for android compatability
+- (NSString *) getSignatureWithToken:(char *)arg0
+{
+	NSString *myString = [NSString stringWithFormat:@"iOS always empty"];
+	return myString;
+}
+
 @end

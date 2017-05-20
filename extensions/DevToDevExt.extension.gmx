@@ -141,7 +141,7 @@ android:enabled="true" android:exported="true"&gt;
             <arg>2</arg>
           </args>
         </function>
-		<function>
+        <function>
           <name>DevToDev_realPayment</name>
           <externalName>realPayment</externalName>
           <kind>11</kind>
@@ -198,6 +198,17 @@ android:enabled="true" android:exported="true"&gt;
             <arg>1</arg>
             <arg>1</arg>
             <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>DevToDev_getSignatureWithToken</name>
+          <externalName>getSignatureWithToken</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>1</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
           </args>
         </function>
       </functions>

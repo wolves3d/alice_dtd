@@ -46,5 +46,8 @@
 		Arg5:(char*) locale
 		Arg6:(char*) email
 		Arg7:(double) moneySpent;
+		
+// for android compatability
+- (NSString *) getSignatureWithToken:(char *)arg0;
 
 @end
