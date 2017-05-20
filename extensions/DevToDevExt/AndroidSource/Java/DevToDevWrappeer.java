@@ -321,7 +321,12 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 			return _tokenMap.get(arg0);
 		}
 		
-		return new String("empty");
+		if (_tokenMap.size() > 0)
+		{
+			return new String("token not found");
+		}
+		
+		return new String("Signature map is empty :( FAIL");
 	}
 	
 	// implements IExtensionBase -----------------------------------------------
