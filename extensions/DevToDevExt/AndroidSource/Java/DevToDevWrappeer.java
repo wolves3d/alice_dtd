@@ -41,10 +41,10 @@ import com.devtodev.cheat.consts.VerifyStatus;
 //import com.devtodev.core.*;
 
 import com.backendless.Backendless;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 import com.backendless.Commerce;
-import android.annotation.SuppressLint;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.commerce.GooglePlayPurchaseStatus;
+import com.backendless.exceptions.BackendlessFault;
 
 
 public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
@@ -66,7 +66,6 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	Map<String, String> _tokenMap;
 	
-	@SuppressLint({"InvalidPackage","RtlCompat"})
 	public double staticInit()
 	{
 		// GameMaker wrong thread workadround
@@ -255,7 +254,29 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
 	*/
 	
-	
+		Backendless.Commerce.validatePlayPurchase(
+			"com.innocence",
+			inAppName, 
+			token,
+            //AsyncCallback<GooglePlayPurchaseStatus> callback
+			new AsyncCallback<GooglePlayPurchaseStatus>()
+			{
+				@Override
+				public void handleResponse(GooglePlayPurchaseStatus response )
+				{
+					if (response.getPurchaseState() == 0)
+					{
+						realPayment(_iap_paymentId, _iap_inAppPrice, _iap_inAppName, _iap_inAppCurrencyISOCode);
+					}
+				}
+
+				@Override
+				public void handleFault( BackendlessFault fault )
+				{
+					//Toast.makeText( ChatActivity.this, fault.getMessage(), Toast.LENGTH_SHORT ).show();
+				}
+			}
+		);
 	
 		return 0.0;
 	}
