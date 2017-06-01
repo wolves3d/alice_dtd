@@ -40,11 +40,24 @@ import com.devtodev.cheat.listener.OnVerifyListener;
 import com.devtodev.cheat.consts.VerifyStatus;
 //import com.devtodev.core.*;
 
+import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.backendless.Commerce;
+import android.annotation.SuppressLint;
+
 
 public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 {
+	// DEV_TO_DEV
 	public static final String APP_ID = "4026afff-7522-03d8-868c-f62c41723d46";
 	public static final String SECRET_KEY = "HP6cxMTsqXDoOJAQCSL38hmrbkwiFyNz";
+	
+	// BACKENDLESS
+	public static final String APPLICATION_ID = "C8AD69E8-CB16-5FEF-FF88-24C924538200";
+	public static final String API_KEY = "53E2B969-F36C-A46F-FFC1-FFA4148FF300";
+	public static final String SERVER_URL = "https://api.backendless.com";
+	public static final String VERSION = "v1";
 	
 	String _iap_paymentId;
 	double _iap_inAppPrice;
@@ -53,6 +66,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	Map<String, String> _tokenMap;
 	
+	@SuppressLint({"InvalidPackage","RtlCompat"})
 	public double staticInit()
 	{
 		// GameMaker wrong thread workadround
@@ -61,9 +75,13 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		// debug
 		Log.i("yoyo", "DevToDev_staticInit");
 		
-		DevToDev.setLogLevel(LogLevel.Assert);
 		Context appContext = RunnerJNILib.GetApplicationContext();
-		DevToDev.init(appContext, APP_ID, SECRET_KEY);		
+		
+		Backendless.setUrl( SERVER_URL );
+        Backendless.initApp(appContext, APPLICATION_ID, API_KEY, VERSION);
+		
+		DevToDev.setLogLevel(LogLevel.Assert);
+		DevToDev.init(appContext, APP_ID, SECRET_KEY);
 				
 		DevToDev.startSession();
 
@@ -232,8 +250,13 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		_iap_inAppName = inAppName;
 		_iap_inAppCurrencyISOCode = inAppCurrencyISOCode;
 	
+	/*
 		String wwSign = getSignatureWithToken(token);
 		DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
+	*/
+	
+	
+	
 		return 0.0;
 	}
 	
