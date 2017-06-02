@@ -255,7 +255,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	*/
 	
 		Backendless.Commerce.validatePlayPurchase(
-			"com.innocence",
+			"com.glaznev.innocent",
 			inAppName, 
 			token,
             //AsyncCallback<GooglePlayPurchaseStatus> callback
