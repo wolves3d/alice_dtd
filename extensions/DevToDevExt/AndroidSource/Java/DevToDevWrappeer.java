@@ -86,7 +86,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		{
-			((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
+			//((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
 		}
 	
 		_tokenMap = new HashMap<String, String>();
