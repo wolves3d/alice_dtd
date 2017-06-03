@@ -249,11 +249,10 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		_iap_inAppName = inAppName;
 		_iap_inAppCurrencyISOCode = inAppCurrencyISOCode;
 	
-	/*
 		String wwSign = getSignatureWithToken(token);
 		DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
-	*/
 	
+	/*
 		Backendless.Commerce.validatePlayPurchase(
 			"com.glaznev.innocent",
 			inAppName, 
@@ -277,7 +276,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 				}
 			}
 		);
-	
+	*/
 		return 0.0;
 	}
 	
@@ -390,7 +389,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		Log.i("yoyo_ww", "Got activity request code: " + requestCode);
 		Log.i("yoyo_ww", "Got activity result: " + resultCode);
 		
-		if (requestCode == 1001)
+		//if (requestCode == 1001)
 		{
 			Log.i("yoyo_ww", "Getting extras");
 			
