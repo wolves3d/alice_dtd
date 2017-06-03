@@ -249,7 +249,12 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		_iap_inAppName = inAppName;
 		_iap_inAppCurrencyISOCode = inAppCurrencyISOCode;
 	
+		Log.i("yoyo_ww", "verifyPayment with token: " + token);
+	
 		String wwSign = getSignatureWithToken(token);
+		
+		Log.i("yoyo_ww", "verifyPayment with SIGNATURE: " + wwSign);
+		
 		DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
 	
 	/*
