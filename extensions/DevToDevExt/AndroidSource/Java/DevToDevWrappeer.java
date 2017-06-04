@@ -50,8 +50,8 @@ import com.backendless.exceptions.BackendlessFault;
 public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 {
 	// DEV_TO_DEV
-	public static final String APP_ID = "4026afff-7522-03d8-868c-f62c41723d46";
-	public static final String SECRET_KEY = "HP6cxMTsqXDoOJAQCSL38hmrbkwiFyNz";
+	public static final String APP_ID = "205fee84-f87d-0b35-8b6e-689d2c5ce80a";
+	public static final String SECRET_KEY = "HWFYnU4yfIoMmlapvxbXGQ8AkEDPs7CV";
 	
 	// BACKENDLESS
 	public static final String APPLICATION_ID = "C8AD69E8-CB16-5FEF-FF88-24C924538200";
@@ -82,7 +82,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		DevToDev.setLogLevel(LogLevel.Assert);
 		DevToDev.init(appContext, APP_ID, SECRET_KEY);
 				
-		DevToDev.startSession();
+		//DevToDev.startSession();
 
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		{
@@ -119,7 +119,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
         public void onActivityStopped(Activity activity)
 		{
 			Log.i("yoyo", "DevToDev.endSession");
-            DevToDev.endSession();
+            //DevToDev.endSession();
         }
     }
 	
@@ -231,6 +231,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		String inAppName,
 		String inAppCurrencyISOCode)
 	{
+		Log.i("yoyo_ww", "realPayment");
 		DevToDev.realPayment(paymentId, (float)inAppPrice, inAppName, inAppCurrencyISOCode);	
 		return 0.0;
 	}
@@ -287,10 +288,17 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	public void onVerify(VerifyStatus status)
 	{
+		Log.i("yoyo_ww", "onVerify start");
+		
+		Log.i("yoyo_ww", "onVerify status:" + status);
+		
 		if (status == VerifyStatus.Valid)
 		{
+			Log.i("yoyo_ww", "call realPayment");
 			realPayment(_iap_paymentId, _iap_inAppPrice, _iap_inAppName, _iap_inAppCurrencyISOCode);
 		}
+		
+		Log.i("yoyo_ww", "onVerify end");
 	}
 
 	public double setUserInfo(
