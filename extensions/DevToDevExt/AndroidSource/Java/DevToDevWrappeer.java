@@ -251,12 +251,14 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		_iap_inAppCurrencyISOCode = inAppCurrencyISOCode;
 	
 		Log.i("yoyo_ww", "verifyPayment with token: " + token);
+		Log.i("yoyo_ww", "verifyPayment with receipt: " + receipt);
 	
 		String wwSign = getSignatureWithToken(token);
 		
 		Log.i("yoyo_ww", "verifyPayment with SIGNATURE: " + wwSign);
 		
-		DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
+		//DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
+		DevToDevCheat.verifyPayment(receipt, wwSign, publicKey, this);
 	
 	/*
 		Backendless.Commerce.validatePlayPurchase(
