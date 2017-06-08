@@ -65,6 +65,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	String _iap_inAppCurrencyISOCode;
 	
 	Map<String, String> _tokenMap;
+	Map<String, String> _purchaseDataMap;
 	
 	public double staticInit()
 	{
@@ -90,6 +91,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		}
 	
 		_tokenMap = new HashMap<String, String>();
+		_purchaseDataMap = new HashMap<String, String>();
 		
         return 0.0;
     }
@@ -257,8 +259,12 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		
 		Log.i("yoyo_ww", "verifyPayment with SIGNATURE: " + wwSign);
 		
-		//DevToDevCheat.verifyPayment(token, wwSign, publicKey, this);
-		DevToDevCheat.verifyPayment(receipt, wwSign, publicKey, this);
+		String wwJson = getJsonWithToken(token);
+		
+		Log.i("yoyo_ww", "verifyPayment with JSON: " + wwJson);
+		
+		DevToDevCheat.verifyPayment(wwJson, wwSign, publicKey, this);
+		//DevToDevCheat.verifyPayment(receipt, wwSign, publicKey, this);
 	
 	/*
 		Backendless.Commerce.validatePlayPurchase(
@@ -387,6 +393,21 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		return new String("Signature map is empty :( FAIL");
 	}
 	
+	public String getJsonWithToken(String arg0)
+	{
+		if (_purchaseDataMap.containsKey(arg0))
+		{
+			return _purchaseDataMap.get(arg0);
+		}
+		
+		if (_purchaseDataMap.size() > 0)
+		{
+			return new String("token not found");
+		}
+		
+		return new String("Json map is empty :( FAIL");
+	}
+	
 	// implements IExtensionBase -----------------------------------------------
 
 	public void onStart(){};
@@ -432,6 +453,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 					Log.i("yoyo_ww", "Got token: " + token);
 					
 					Log.i("yoyo_ww", "Puttin data to hashMap");
+					_purchaseDataMap.put(token, purchaseData);
 					_tokenMap.put(token, dataSignature);
 					Log.i("yoyo_ww", "SUCCESS");
 					
