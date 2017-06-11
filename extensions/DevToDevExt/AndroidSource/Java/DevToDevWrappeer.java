@@ -38,13 +38,6 @@ import com.devtodev.core.data.consts.Gender;
 import com.devtodev.cheat.DevToDevCheat;
 import com.devtodev.cheat.listener.OnVerifyListener;
 import com.devtodev.cheat.consts.VerifyStatus;
-//import com.devtodev.core.*;
-
-import com.backendless.Backendless;
-import com.backendless.Commerce;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.commerce.GooglePlayPurchaseStatus;
-import com.backendless.exceptions.BackendlessFault;
 
 
 public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
@@ -52,12 +45,6 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	// DEV_TO_DEV
 	public static final String APP_ID = "205fee84-f87d-0b35-8b6e-689d2c5ce80a";
 	public static final String SECRET_KEY = "HWFYnU4yfIoMmlapvxbXGQ8AkEDPs7CV";
-	
-	// BACKENDLESS
-	public static final String APPLICATION_ID = "C8AD69E8-CB16-5FEF-FF88-24C924538200";
-	public static final String API_KEY = "53E2B969-F36C-A46F-FFC1-FFA4148FF300";
-	public static final String SERVER_URL = "https://api.backendless.com";
-	public static final String VERSION = "v1";
 	
 	String _iap_paymentId;
 	double _iap_inAppPrice;
@@ -76,9 +63,6 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		Log.i("yoyo", "DevToDev_staticInit");
 		
 		Context appContext = RunnerJNILib.GetApplicationContext();
-		
-		Backendless.setUrl( SERVER_URL );
-        Backendless.initApp(appContext, APPLICATION_ID, API_KEY, VERSION);
 		
 		DevToDev.setLogLevel(LogLevel.Assert);
 		DevToDev.init(appContext, APP_ID, SECRET_KEY);
@@ -264,33 +248,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		Log.i("yoyo_ww", "verifyPayment with JSON: " + wwJson);
 		
 		DevToDevCheat.verifyPayment(wwJson, wwSign, publicKey, this);
-		//DevToDevCheat.verifyPayment(receipt, wwSign, publicKey, this);
-	
-	/*
-		Backendless.Commerce.validatePlayPurchase(
-			"com.glaznev.innocent",
-			inAppName, 
-			token,
-            //AsyncCallback<GooglePlayPurchaseStatus> callback
-			new AsyncCallback<GooglePlayPurchaseStatus>()
-			{
-				@Override
-				public void handleResponse(GooglePlayPurchaseStatus response )
-				{
-					if (response.getPurchaseState() == 0)
-					{
-						realPayment(_iap_paymentId, _iap_inAppPrice, _iap_inAppName, _iap_inAppCurrencyISOCode);
-					}
-				}
 
-				@Override
-				public void handleFault( BackendlessFault fault )
-				{
-					//Toast.makeText( ChatActivity.this, fault.getMessage(), Toast.LENGTH_SHORT ).show();
-				}
-			}
-		);
-	*/
 		return 0.0;
 	}
 	
