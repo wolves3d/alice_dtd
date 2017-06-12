@@ -3,7 +3,7 @@
   <name>DevToDevExt</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID>ACBD3CFF4E539AD869A0E8E3B4B022DD</ProductID>
+  <ProductID></ProductID>
   <date>25/09/16</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -18,7 +18,18 @@
   <macsourcedir></macsourcedir>
   <maclinkerflags></maclinkerflags>
   <maccompilerflags></maccompilerflags>
-  <androidinject>&lt;receiver android:name="com.devtodev.core.logic.receiver.InstallReferrerReceiver"
+  <androidinject>&lt;receiver
+ android:name="com.adjust.sdk.AdjustReferrerReceiver"
+  android:exported="true"&gt;
+
+&lt;intent-filter&gt;
+
+&lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
+  &lt;/intent-filter&gt;
+
+&lt;/receiver&gt;
+
+&lt;receiver android:name="com.devtodev.core.logic.receiver.InstallReferrerReceiver"
 android:enabled="true" android:exported="true"&gt;
 &lt;intent-filter&gt;
 &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
