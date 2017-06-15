@@ -271,7 +271,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		String gender,
 		String name,
 		double ageRange,
-		double id,
+		String id,
 		String locale,
 		String email,
 		double moneySpent)
@@ -287,7 +287,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 
 		DevToDev.getActivePlayer().setUserData("name", name);
 		DevToDev.getActivePlayer().setUserData("ageRange", (Number)ageRange);
-		DevToDev.getActivePlayer().setUserData("id", (Number)id);
+		DevToDev.getActivePlayer().setUserData("fb-id", id);
 		DevToDev.getActivePlayer().setUserData("locale", locale);
 
 		DevToDev.getActivePlayer().setEmail(email);

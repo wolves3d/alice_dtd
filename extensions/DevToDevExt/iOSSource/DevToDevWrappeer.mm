@@ -189,7 +189,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 - (double) setUserInfo:(char*)gender
 		Arg2:(char*) name
 		Arg3:(double) ageRange
-		Arg4:(double) userID
+		Arg4:(char*) userID
 		Arg5:(char*) locale
 		Arg6:(char*) email
 		Arg7:(double) moneySpent
@@ -208,14 +208,14 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	
 	NSString *nsName = [NSString stringWithFormat:@"%s", name];
 	NSNumber *nsAgeRange = [NSNumber numberWithInt:(int)ageRange];
-	NSNumber *nsId = [NSNumber numberWithInt:(int)userID];
+	NSString *nsId = [NSString stringWithFormat:@"%s", userID];
 	NSString *nsLocale = [NSString stringWithFormat:@"%s", locale];
 	NSNumber *nsMoneySpent = [NSNumber numberWithInt:(int)moneySpent];
 	
 	NSDictionary* userData = @{
 		@"name" : nsName,
 		@"ageRange" : nsAgeRange,
-		@"id" : nsId,
+		@"fb-id" : nsId,
 		@"locale" : nsLocale,
 		@"moneySpent" : nsMoneySpent,
 	};

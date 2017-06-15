@@ -42,7 +42,7 @@
 - (double) setUserInfo:(char*)gender
 		Arg2:(char*) name
 		Arg3:(double) ageRange
-		Arg4:(double) userID
+		Arg4:(char*) userID
 		Arg5:(char*) locale
 		Arg6:(char*) email
 		Arg7:(double) moneySpent;
