@@ -47,10 +47,6 @@ import com.adjust.sdk.AdjustEvent;
 
 public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 {
-	// DEV_TO_DEV
-	public static final String APP_ID = "205fee84-f87d-0b35-8b6e-689d2c5ce80a";
-	public static final String SECRET_KEY = "HWFYnU4yfIoMmlapvxbXGQ8AkEDPs7CV";
-	
 	String _iap_paymentId;
 	double _iap_inAppPrice;
 	String _iap_inAppName;
@@ -62,51 +58,14 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	public double staticInit()
 	{
 		// debug
-		Log.i("yoyo", "DevToDev_staticInit 1");
+		Log.i("yoyo", "DevToDev_staticInit");
 		
 		// GameMaker wrong thread workadround
-		Looper.prepare();
+		//Looper.prepare();
 		
 		// debug
-		Log.i("yoyo", "DevToDev_staticInit 2");
-		
-		Context appContext = RunnerJNILib.GetApplicationContext();
-		
-		DevToDev.setLogLevel(LogLevel.Assert);
-		DevToDev.init(appContext, APP_ID, SECRET_KEY);
-				
-		//DevToDev.startSession();
-
-		Log.i("yoyo", "Adjust VERBOSE log level");
-		
-		String appToken = "dfzdd7h4rlkw";
-        String environment = AdjustConfig.ENVIRONMENT_SANDBOX;
-        AdjustConfig config = new AdjustConfig(appContext, appToken, environment);
-		
-		Log.i("yoyo", "Adjust VERBOSE log level 2");
-		
-		config.setLogLevel(com.adjust.sdk.LogLevel.VERBOSE);
-		
-		Log.i("yoyo", "Adjust VERBOSE log level 3");
-		
-        Adjust.onCreate(config);
-		
-		Log.i("yoyo", "Adjust VERBOSE log level 4");
-		
-		Adjust.onResume();
-		
-		Log.i("yoyo", "Adjust VERBOSE log level 5");
-		
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-		{
-			Log.i("yoyo", "Adjust VERBOSE log level 6");
-			//((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
-			Log.i("yoyo", "Adjust VERBOSE log level 7");
-		}
-	
-		_tokenMap = new HashMap<String, String>();
-		_purchaseDataMap = new HashMap<String, String>();
-				
+		//Log.i("yoyo", "DevToDev_staticInit 2");
+						
         return 0.0;
     }
 	
@@ -427,7 +386,46 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	// implements IExtensionBase -----------------------------------------------
 
 	@Override
-	public void onStart(){};
+	public void onStart()
+	{
+		Log.i("yoyo", "DevToDev onStart");
+		
+		Context appContext = RunnerJNILib.GetApplicationContext();
+		
+		// DEV_TO_DEV
+		String APP_ID = "205fee84-f87d-0b35-8b6e-689d2c5ce80a";
+		String SECRET_KEY = "HWFYnU4yfIoMmlapvxbXGQ8AkEDPs7CV";
+		DevToDev.setLogLevel(LogLevel.Assert);
+		DevToDev.init(appContext, APP_ID, SECRET_KEY);
+				
+		//DevToDev.startSession();
+
+		Log.i("yoyo", "Adjust VERBOSE log level");
+		
+		String appToken = "dfzdd7h4rlkw";
+        String environment = AdjustConfig.ENVIRONMENT_SANDBOX;
+        AdjustConfig config = new AdjustConfig(appContext, appToken, environment);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 2");
+		
+		config.setLogLevel(com.adjust.sdk.LogLevel.VERBOSE);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 3");
+		
+        Adjust.onCreate(config);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 5");
+		
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+		{
+			Log.i("yoyo", "Adjust VERBOSE log level 6");
+			//((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
+			Log.i("yoyo", "Adjust VERBOSE log level 7");
+		}
+	
+		_tokenMap = new HashMap<String, String>();
+		_purchaseDataMap = new HashMap<String, String>();
+	};
 	
 	@Override
 	public void onRestart(){};
@@ -435,8 +433,8 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	@Override
 	public void onStop()
 	{
-		Log.i("yoyo", "DevToDev.endSession");
-		DevToDev.endSession();
+		Log.i("yoyo", "DevToDev onStop");
+		//DevToDev.endSession();
 	};
 	
 	@Override
@@ -445,12 +443,14 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	@Override
 	public void onPause()
 	{
+		Log.i("yoyo", "DevToDev onPause");
 		Adjust.onPause();
 	};
 	
 	@Override
 	public void onResume()
 	{
+		Log.i("yoyo", "DevToDev onResume");
 		Adjust.onResume();
 	};
 	
