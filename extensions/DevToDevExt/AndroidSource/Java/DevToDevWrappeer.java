@@ -39,6 +39,11 @@ import com.devtodev.cheat.DevToDevCheat;
 import com.devtodev.cheat.listener.OnVerifyListener;
 import com.devtodev.cheat.consts.VerifyStatus;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustConfig;
+import com.adjust.sdk.AdjustEvent;
+//import com.adjust.sdk.LogLevel;
+
 
 public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 {
@@ -56,11 +61,14 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	public double staticInit()
 	{
+		// debug
+		Log.i("yoyo", "DevToDev_staticInit 1");
+		
 		// GameMaker wrong thread workadround
 		Looper.prepare();
 		
 		// debug
-		Log.i("yoyo", "DevToDev_staticInit");
+		Log.i("yoyo", "DevToDev_staticInit 2");
 		
 		Context appContext = RunnerJNILib.GetApplicationContext();
 		
@@ -69,17 +77,40 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 				
 		//DevToDev.startSession();
 
+		Log.i("yoyo", "Adjust VERBOSE log level");
+		
+		String appToken = "dfzdd7h4rlkw";
+        String environment = AdjustConfig.ENVIRONMENT_SANDBOX;
+        AdjustConfig config = new AdjustConfig(appContext, appToken, environment);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 2");
+		
+		config.setLogLevel(com.adjust.sdk.LogLevel.VERBOSE);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 3");
+		
+        Adjust.onCreate(config);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 4");
+		
+		Adjust.onResume();
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 5");
+		
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		{
+			Log.i("yoyo", "Adjust VERBOSE log level 6");
 			//((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
+			Log.i("yoyo", "Adjust VERBOSE log level 7");
 		}
 	
 		_tokenMap = new HashMap<String, String>();
 		_purchaseDataMap = new HashMap<String, String>();
-		
+				
         return 0.0;
     }
 	
+	/*
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public class CustomLifecycleCallback implements Application.ActivityLifecycleCallbacks
 	{   
@@ -90,10 +121,16 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		public void onActivityDestroyed(Activity activity) {}
 		
 		@Override
-		public void onActivityPaused(Activity activity) {}
+		public void onActivityPaused(Activity activity)
+		{
+			Adjust.onPause();
+		}
 		
 		@Override
-		public void onActivityResumed(Activity activity) {}
+		public void onActivityResumed(Activity activity)
+		{
+			Adjust.onResume();
+		}
 		
 		@Override
 		public void onActivitySaveInstanceState(Activity activity, Bundle outState) {}
@@ -108,6 +145,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
             //DevToDev.endSession();
         }
     }
+	*/
 	
 	
 	public double staticFinal()
@@ -125,6 +163,26 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		
 		// FIXME
 		//DevToDev.sendBufferedEvents();
+		
+		return 0.0;
+	}
+	
+	
+	public double adjustEvent(String arg0)
+	{
+		AdjustEvent event = new AdjustEvent(arg0);
+		Adjust.trackEvent(event);
+		
+		return 0.0;
+	}
+	
+
+	public double adjustIAP(String arg0, double sum, String currency)
+	{
+		AdjustEvent event = new AdjustEvent(arg0);
+		event.setRevenue(sum, currency);
+		
+		Adjust.trackEvent(event);
 		
 		return 0.0;
 	}
@@ -368,12 +426,35 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	// implements IExtensionBase -----------------------------------------------
 
+	@Override
 	public void onStart(){};
+	
+	@Override
 	public void onRestart(){};
-	public void onStop(){};
+	
+	@Override
+	public void onStop()
+	{
+		Log.i("yoyo", "DevToDev.endSession");
+		DevToDev.endSession();
+	};
+	
+	@Override
 	public void onDestroy(){};
-	public void onPause(){};
-	public void onResume(){};
+	
+	@Override
+	public void onPause()
+	{
+		Adjust.onPause();
+	};
+	
+	@Override
+	public void onResume()
+	{
+		Adjust.onResume();
+	};
+	
+	@Override
 	public void onConfigurationChanged(Configuration newConfig){};
 	
 	public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {};
