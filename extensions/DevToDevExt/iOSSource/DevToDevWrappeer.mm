@@ -1,5 +1,6 @@
 #import "DevToDevWrappeer.h"
 #import <devtodev/devtodev.h>
+#import <AdjustSdk/Adjust.h>
 #include <asl.h>
 #include <stdio.h>
 
@@ -34,6 +35,14 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	NSLog(@"INIT DevToDev");
 	[DevToDev initWithKey:@"459e6b88-3155-01d8-941e-7001c50f3172" andSecretKey:@"NjH4byU02u6AgsvxCJfqIB3cLwVYtZeo"];
 	
+	
+	NSString *yourAppToken = @"dfzdd7h4rlkw";
+	NSString *environment = ADJEnvironmentSandbox;
+	ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
+                                   environment:environment];
+
+	[Adjust appDidLaunch:adjustConfig];
+	
 	return 1.0;
 }
 
@@ -51,6 +60,34 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	NSString *eventName = [NSString stringWithFormat:@"%s",arg0];
 	[DevToDev customEvent:eventName];
 	
+	return 1.0;
+}
+
+
+- (double) adjustEvent:(char *)arg0
+{
+	NSLog(@"ADJUST CUSTOM EVENT: %s", arg0);
+	
+	NSString *eventToken = [NSString stringWithFormat:@"%s",arg0];
+	ADJEvent *event = [ADJEvent eventWithEventToken:eventToken];
+	[Adjust trackEvent:event];
+	
+	return 1.0;
+}
+
+
+- (double) adjustIAP:(char*)arg0
+		Arg2:(double) purchasePrice
+		Arg3:(char*) purchaseCurrency
+{
+	NSLog(@"ADJUST IAP EVENT: %s", arg0);
+	
+	NSString *eventToken = [NSString stringWithFormat:@"%s", arg0];
+	NSString *currency = [NSString stringWithFormat:@"%s", purchaseCurrency];
+	ADJEvent *event = [ADJEvent eventWithEventToken:eventToken];
+	[event setRevenue:purchasePrice currency:currency];
+	
+	[Adjust trackEvent:event];
 	return 1.0;
 }
 

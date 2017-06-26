@@ -51,6 +51,7 @@ android:enabled="true" android:exported="true"&gt;
     <Framework weak="0">devtodev.framework</Framework>
     <Framework weak="0">devtodevAppExtensions.framework</Framework>
     <Framework weak="-1">UserNotifications.framework</Framework>
+    <Framework weak="0">AdjustSdk.framework</Framework>
   </iosThirdPartyFrameworks>
   <androidPermissions>
     <Permission>android.permission.INTERNET</Permission>
@@ -63,7 +64,7 @@ android:enabled="true" android:exported="true"&gt;
       <filename>DevToDevExt.ext</filename>
       <origname>extensions\DevToDevExt.ext</origname>
       <init>DevToDev_staticInit</init>
-      <final></final>
+      <final>DevToDev_staticFinal</final>
       <kind>4</kind>
       <uncompress>0</uncompress>
       <ConfigOptions>
@@ -219,6 +220,30 @@ android:enabled="true" android:exported="true"&gt;
           <returnType>1</returnType>
           <argCount>1</argCount>
           <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>DevToDevExt_adjustEvent</name>
+          <externalName>adjustEvent</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>DevToDevExt_adjustIAP</name>
+          <externalName>adjustIAP</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>3</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>2</arg>
             <arg>1</arg>
           </args>
         </function>
