@@ -37,7 +37,7 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	
 	
 	NSString *yourAppToken = @"dfzdd7h4rlkw";
-	NSString *environment = ADJEnvironmentSandbox;
+	NSString *environment = ADJEnvironmentProduction;
 	ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
                                    environment:environment];
 

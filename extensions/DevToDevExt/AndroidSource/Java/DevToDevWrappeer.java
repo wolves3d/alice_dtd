@@ -403,7 +403,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		Log.i("yoyo", "Adjust VERBOSE log level");
 		
 		String appToken = "dfzdd7h4rlkw";
-        String environment = AdjustConfig.ENVIRONMENT_SANDBOX;
+        String environment = AdjustConfig.ENVIRONMENT_PRODUCTION;
         AdjustConfig config = new AdjustConfig(appContext, appToken, environment);
 		
 		Log.i("yoyo", "Adjust VERBOSE log level 2");
