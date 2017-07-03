@@ -39,11 +39,6 @@ import com.devtodev.cheat.DevToDevCheat;
 import com.devtodev.cheat.listener.OnVerifyListener;
 import com.devtodev.cheat.consts.VerifyStatus;
 
-import com.adjust.sdk.Adjust;
-import com.adjust.sdk.AdjustConfig;
-import com.adjust.sdk.AdjustEvent;
-//import com.adjust.sdk.LogLevel;
-
 
 public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 {
@@ -382,17 +377,10 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 
 		Log.i("yoyo", "Adjust VERBOSE log level");
 		
-		String appToken = "dfzdd7h4rlkw";
-        String environment = AdjustConfig.ENVIRONMENT_PRODUCTION;
-        AdjustConfig config = new AdjustConfig(appContext, appToken, environment);
-		
 		Log.i("yoyo", "Adjust VERBOSE log level 2");
-		
-		config.setLogLevel(com.adjust.sdk.LogLevel.VERBOSE);
 		
 		Log.i("yoyo", "Adjust VERBOSE log level 3");
 		
-        Adjust.onCreate(config);
 		
 		Log.i("yoyo", "Adjust VERBOSE log level 5");
 		
@@ -408,7 +396,10 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	};
 	
 	@Override
-	public void onRestart(){};
+	public void onRestart()
+	{
+		Log.i("yoyo", "DevToDev onRestart");
+	};
 	
 	@Override
 	public void onStop()
@@ -418,26 +409,33 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	};
 	
 	@Override
-	public void onDestroy(){};
+	public void onDestroy()
+	{
+		Log.i("yoyo", "DevToDev onDestroy");
+	};
 	
 	@Override
 	public void onPause()
 	{
 		Log.i("yoyo", "DevToDev onPause");
-		Adjust.onPause();
 	};
 	
 	@Override
 	public void onResume()
 	{
 		Log.i("yoyo", "DevToDev onResume");
-		Adjust.onResume();
 	};
 	
 	@Override
-	public void onConfigurationChanged(Configuration newConfig){};
+	public void onConfigurationChanged(Configuration newConfig)
+	{
+		Log.i("yoyo", "DevToDev onConfigurationChanged");
+	};
 	
-	public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {};
+	public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults)
+	{
+		Log.i("yoyo", "DevToDev onRequestPermissionsResult");
+	};
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -492,38 +490,61 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	public boolean onKeyLongPress(int keyCode, KeyEvent event)
 	{
+		Log.i("yoyo", "DevToDev onKeyLongPress");
 		return false;
 	}
+	
 	public void onWindowFocusChanged(boolean hasFocus)
 	{
+		Log.i("yoyo", "DevToDev onWindowFocusChanged");
 	}
 	
 	public boolean onCreateOptionsMenu( Menu menu )
 	{
+		Log.i("yoyo", "DevToDev onCreateOptionsMenu");
 		return false;
 	}
+	
 	public boolean onOptionsItemSelected( MenuItem item )
 	{
+		Log.i("yoyo", "DevToDev onOptionsItemSelected");
 		return false;
 	}
 	
 	public boolean onKeyDown( int keyCode, KeyEvent event )
 	{
+		Log.i("yoyo", "DevToDev onKeyDown");
 		return false;
 	}
 	public boolean onKeyUp( int keyCode, KeyEvent event )
 	{
+		Log.i("yoyo", "DevToDev onKeyUp");
 		return false;
 	}
 	
 	public Dialog onCreateDialog(int id)
 	{
+		Log.i("yoyo", "DevToDev onCreateDialog");
 		return null;
 	}
 	
-	public boolean onTouchEvent(final MotionEvent event)	{ return false;};
-	public boolean onGenericMotionEvent(MotionEvent event)	{ return false;};
+	public boolean onTouchEvent(final MotionEvent event)
+	{
+		Log.i("yoyo", "DevToDev onTouchEvent");
+		return false;};
 	
-	public boolean dispatchGenericMotionEvent(MotionEvent event)	{ return false;};
-	public boolean dispatchKeyEvent(KeyEvent event)				{ return false;};
+	public boolean onGenericMotionEvent(MotionEvent event)
+	{
+		Log.i("yoyo", "DevToDev onGenericMotionEvent");
+		return false;};
+	
+	public boolean dispatchGenericMotionEvent(MotionEvent event)
+	{
+		Log.i("yoyo", "DevToDev dispatchGenericMotionEvent");
+		return false;};
+	
+	public boolean dispatchKeyEvent(KeyEvent event)
+	{
+		Log.i("yoyo", "DevToDev dispatchKeyEvent");
+		return false;};
 }
