@@ -3,7 +3,7 @@
   <name>DevToDevExt</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID></ProductID>
+  <ProductID>F63EE815C05B1EFD8CFA1337B78A2B85</ProductID>
   <date>25/09/16</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -18,16 +18,7 @@
   <macsourcedir></macsourcedir>
   <maclinkerflags></maclinkerflags>
   <maccompilerflags></maccompilerflags>
-  <androidinject>&lt;receiver
- android:name="com.adjust.sdk.AdjustReferrerReceiver"
-  android:exported="true"&gt;
-
-&lt;intent-filter&gt;
-
-&lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
-  &lt;/intent-filter&gt;
-
-&lt;/receiver&gt;
+  <androidinject>
 
 &lt;receiver android:name="com.devtodev.core.logic.receiver.InstallReferrerReceiver"
 android:enabled="true" android:exported="true"&gt;
@@ -210,41 +201,6 @@ android:enabled="true" android:exported="true"&gt;
             <arg>1</arg>
             <arg>1</arg>
             <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>DevToDev_getSignatureWithToken</name>
-          <externalName>getSignatureWithToken</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>1</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>1</arg>
-          </args>
-        </function>
-        <function>
-          <name>DevToDevExt_adjustEvent</name>
-          <externalName>adjustEvent</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>1</arg>
-          </args>
-        </function>
-        <function>
-          <name>DevToDevExt_adjustIAP</name>
-          <externalName>adjustIAP</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>3</argCount>
-          <args>
-            <arg>1</arg>
-            <arg>2</arg>
-            <arg>1</arg>
           </args>
         </function>
       </functions>

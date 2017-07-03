@@ -125,26 +125,6 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		
 		return 0.0;
 	}
-	
-	
-	public double adjustEvent(String arg0)
-	{
-		AdjustEvent event = new AdjustEvent(arg0);
-		Adjust.trackEvent(event);
-		
-		return 0.0;
-	}
-	
-
-	public double adjustIAP(String arg0, double sum, String currency)
-	{
-		AdjustEvent event = new AdjustEvent(arg0);
-		event.setRevenue(sum, currency);
-		
-		Adjust.trackEvent(event);
-		
-		return 0.0;
-	}
 
 
 	public double levelUp(double level)

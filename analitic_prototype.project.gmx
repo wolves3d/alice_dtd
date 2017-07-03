@@ -5,6 +5,7 @@
   </Configs>
   <NewExtensions>
     <extension index="0">extensions\DevToDevExt</extension>
+    <extension index="1">extensions\AdjustExt</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">

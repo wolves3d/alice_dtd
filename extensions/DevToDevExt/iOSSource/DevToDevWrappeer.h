@@ -13,11 +13,6 @@
 - (double) levelUp:(double)arg0;
 - (double) tutorialCompleted:(double)arg0;
 
-- (double) adjustEvent:(char *)arg0;
-- (double) adjustIAP:(char*)arg0
-		Arg2:(double) purchasePrice
-		Arg3:(char*) purchaseCurrency;
-
 - (double) progressionEvent:(char *)locationName
 	Arg2:(double) spentTime
 	Arg3:(double) spentDot
@@ -51,8 +46,5 @@
 		Arg5:(char*) locale
 		Arg6:(char*) email
 		Arg7:(double) moneySpent;
-		
-// for android compatability
-- (NSString *) getSignatureWithToken:(char *)arg0;
 
 @end
