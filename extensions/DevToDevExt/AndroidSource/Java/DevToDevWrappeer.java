@@ -364,7 +364,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 		// DEV_TO_DEV
 		String APP_ID = "205fee84-f87d-0b35-8b6e-689d2c5ce80a";
 		String SECRET_KEY = "HWFYnU4yfIoMmlapvxbXGQ8AkEDPs7CV";
-		DevToDev.setLogLevel(LogLevel.Verbose);
+		DevToDev.setLogLevel(LogLevel.Assert);
 		DevToDev.init(appContext, APP_ID, SECRET_KEY);
 		
 		Log.i("yoyo", "Adjust VERBOSE log level");
