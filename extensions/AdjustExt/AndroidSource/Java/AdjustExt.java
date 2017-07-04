@@ -39,10 +39,40 @@ import com.adjust.sdk.AdjustEvent;
 
 public class AdjustExt implements IExtensionBase
 {	
+	public void Init()
+	{
+		Log.i("yoyo", "Adjust Init");
+		
+		Context appContext = RunnerJNILib.GetApplicationContext();
+
+		Log.i("yoyo", "Adjust VERBOSE log level");
+		
+		String appToken = "dfzdd7h4rlkw";
+        String environment = AdjustConfig.ENVIRONMENT_PRODUCTION;
+        AdjustConfig config = new AdjustConfig(appContext, appToken, environment);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 2");
+		
+		config.setLogLevel(com.adjust.sdk.LogLevel.VERBOSE);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 3");
+		
+        Adjust.onCreate(config);
+		
+		Log.i("yoyo", "Adjust VERBOSE log level 5");
+		
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+		{
+			Log.i("yoyo", "Adjust VERBOSE log level 6");
+			//((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
+			Log.i("yoyo", "Adjust VERBOSE log level 7");
+		}
+	}
+		
 	public double staticInit()
 	{
 		// debug
-		Log.i("yoyo", "DevToDev_staticInit");
+		Log.i("yoyo", "Adjust staticInit");
 		
 		// GameMaker wrong thread workadround
 		//Looper.prepare();
@@ -94,7 +124,6 @@ public class AdjustExt implements IExtensionBase
 	public double staticFinal()
 	{
 		Log.i("yoyo", "DevToDev_staticFinal");
-		//DevToDev.endSession();
 		return 0.0;
 	}
 	
@@ -123,32 +152,7 @@ public class AdjustExt implements IExtensionBase
 	@Override
 	public void onStart()
 	{
-		Log.i("yoyo", "DevToDev onStart");
-		
-		Context appContext = RunnerJNILib.GetApplicationContext();
-
-		Log.i("yoyo", "Adjust VERBOSE log level");
-		
-		String appToken = "dfzdd7h4rlkw";
-        String environment = AdjustConfig.ENVIRONMENT_PRODUCTION;
-        AdjustConfig config = new AdjustConfig(appContext, appToken, environment);
-		
-		Log.i("yoyo", "Adjust VERBOSE log level 2");
-		
-		config.setLogLevel(com.adjust.sdk.LogLevel.VERBOSE);
-		
-		Log.i("yoyo", "Adjust VERBOSE log level 3");
-		
-        Adjust.onCreate(config);
-		
-		Log.i("yoyo", "Adjust VERBOSE log level 5");
-		
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-		{
-			Log.i("yoyo", "Adjust VERBOSE log level 6");
-			//((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
-			Log.i("yoyo", "Adjust VERBOSE log level 7");
-		}
+		Log.i("yoyo", "Adjust onStart");
 	};
 	
 	@Override
@@ -157,8 +161,7 @@ public class AdjustExt implements IExtensionBase
 	@Override
 	public void onStop()
 	{
-		Log.i("yoyo", "DevToDev onStop");
-		//DevToDev.endSession();
+		Log.i("yoyo", "Adjust onStop");
 	};
 	
 	@Override
@@ -167,15 +170,17 @@ public class AdjustExt implements IExtensionBase
 	@Override
 	public void onPause()
 	{
-		Log.i("yoyo", "DevToDev onPause");
+		Log.i("yoyo", "Adjust onPause begin");
 		Adjust.onPause();
+		Log.i("yoyo", "Adjust onPause end");
 	};
 	
 	@Override
 	public void onResume()
 	{
-		Log.i("yoyo", "DevToDev onResume");
+		Log.i("yoyo", "Adjust onResume begin");
 		Adjust.onResume();
+		Log.i("yoyo", "Adjust onResume end");
 	};
 	
 	@Override

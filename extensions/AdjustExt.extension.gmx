@@ -3,7 +3,7 @@
   <name>AdjustExt</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID>F3D00DAD3DDB83EFFDD568E8093FC7AA</ProductID>
+  <ProductID></ProductID>
   <date>03/07/17</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -60,20 +60,20 @@
       <functions>
         <function>
           <name>Adjust_staticInit</name>
-          <externalName></externalName>
-          <kind>0</kind>
+          <externalName>staticInit</externalName>
+          <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>-1</argCount>
+          <argCount>0</argCount>
           <args/>
         </function>
         <function>
           <name>Adjust_staticFinal</name>
-          <externalName></externalName>
-          <kind>0</kind>
+          <externalName>staticFinal</externalName>
+          <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>-1</argCount>
+          <argCount>0</argCount>
           <args/>
         </function>
         <function>
