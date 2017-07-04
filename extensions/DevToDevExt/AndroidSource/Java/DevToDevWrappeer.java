@@ -53,14 +53,10 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	public double staticInit()
 	{
 		// debug
-		Log.i("yoyo", "DevToDev_staticInit");
+		Log.i("yoyo", "DevToDev staticInit");
 		
 		// GameMaker wrong thread workadround
-		//Looper.prepare();
-		
-		// debug
-		//Log.i("yoyo", "DevToDev_staticInit 2");
-						
+		//Looper.prepare();					
         return 0.0;
     }
 	
@@ -104,8 +100,7 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	public double staticFinal()
 	{
-		Log.i("yoyo", "DevToDev_staticFinal");
-		//DevToDev.endSession();
+		Log.i("yoyo", "DevToDev staticFinal");
 		return 0.0;
 	}
 
@@ -360,22 +355,30 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	
 	// implements IExtensionBase -----------------------------------------------
 
-	@Override
-	public void onStart()
+	public void Init()
 	{
-		Log.i("yoyo", "DevToDev onStart");
+		Log.i("yoyo", "DevToDev Init");
 		
 		Context appContext = RunnerJNILib.GetApplicationContext();
 		
 		// DEV_TO_DEV
 		String APP_ID = "205fee84-f87d-0b35-8b6e-689d2c5ce80a";
 		String SECRET_KEY = "HWFYnU4yfIoMmlapvxbXGQ8AkEDPs7CV";
-		DevToDev.setLogLevel(LogLevel.Assert);
+		DevToDev.setLogLevel(LogLevel.Verbose);
 		DevToDev.init(appContext, APP_ID, SECRET_KEY);
-				
-		//DevToDev.startSession();
-
+		
 		Log.i("yoyo", "Adjust VERBOSE log level");
+		
+		_tokenMap = new HashMap<String, String>();
+		_purchaseDataMap = new HashMap<String, String>();
+	}
+	
+	@Override
+	public void onStart()
+	{
+		Log.i("yoyo", "DevToDev onStart");
+		
+		DevToDev.startSession();
 		
 		Log.i("yoyo", "Adjust VERBOSE log level 2");
 		
@@ -390,9 +393,6 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 			//((Application)appContext).registerActivityLifecycleCallbacks(new CustomLifecycleCallback());
 			Log.i("yoyo", "Adjust VERBOSE log level 7");
 		}
-	
-		_tokenMap = new HashMap<String, String>();
-		_purchaseDataMap = new HashMap<String, String>();
 	};
 	
 	@Override
@@ -405,6 +405,8 @@ public class DevToDevWrappeer implements IExtensionBase, OnVerifyListener
 	public void onStop()
 	{
 		Log.i("yoyo", "DevToDev onStop");
+		
+		// FIXME: cause CRASH!!!
 		//DevToDev.endSession();
 	};
 	
