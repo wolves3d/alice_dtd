@@ -1,6 +1,5 @@
 #import "DevToDevWrappeer.h"
 #import <devtodev/devtodev.h>
-#import <AdjustSdk/Adjust.h>
 #include <asl.h>
 #include <stdio.h>
 
@@ -35,13 +34,6 @@ extern void CreateAsynEventWithDSMap(int dsmapindex, int event_index);
 	NSLog(@"INIT DevToDev");
 	[DevToDev initWithKey:@"459e6b88-3155-01d8-941e-7001c50f3172" andSecretKey:@"NjH4byU02u6AgsvxCJfqIB3cLwVYtZeo"];
 	
-	
-	NSString *yourAppToken = @"dfzdd7h4rlkw";
-	NSString *environment = ADJEnvironmentProduction;
-	ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
-                                   environment:environment];
-
-	[Adjust appDidLaunch:adjustConfig];
 	
 	return 1.0;
 }
